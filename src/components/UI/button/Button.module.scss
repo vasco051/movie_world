@@ -1,0 +1,81 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  text-transform: uppercase;
+  cursor: pointer;
+
+  height: 44px;
+
+  padding: 0 24px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 44px;
+}
+
+.button a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*primary button*/
+.primary {
+  border-radius: 4px;
+
+  background: #037aeb;
+  color: #ffffff;
+}
+
+.primary:hover {
+  background: #068dff;
+}
+
+.primary:active {
+  background: #00386c;
+}
+
+/*secondary button*/
+.secondary {
+  border-radius: 4px;
+
+  background: #ffffff;
+  color: #1a1d29;
+}
+
+.secondary:hover {
+  background: #c8c9cb;
+}
+
+/*outlined button*/
+.outlined {
+  background: rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+
+.outlined:hover {
+  background: rgba(249, 249, 249, 0.4);
+  color: #101116;
+}
+
+.outlinedWithIcon {
+  border-radius: 50%;
+  width: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outlinedWithIcon:hover {
+  background: rgba(249, 249, 249, 0.4);
+}
+
+.outlinedWithIcon:hover svg * {
+  fill: white;
+}

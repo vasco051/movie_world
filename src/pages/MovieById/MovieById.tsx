@@ -1,0 +1,67 @@
+import { FC, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
+import MajorMovie from "./MajorMovie/MajorMovie";
+import AwardsMovie from "./AwardsMovie/AwardsMovie";
+import CommentsMovie from "./CommentsMovie/CommentsMovie";
+import Loader from "../../components/UI/Loader/Loader";
+
+import { IMovieFull } from "../../models/movieModels";
+
+import { useFetching } from "../../hooks/useFetching";
+import { MovieService } from "../../API/movieService";
+
+
+import styles from "./MovieById.module.scss";
+import clsx from "clsx";
+
+
+const MovieById: FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const [ movie, setMovie ] = useState<IMovieFull | null>(null);
+  const [ selectValue, setSelectValue ] = useState<string>("Номинации")
+
+  const [ fetchMovie, isLoading, isError ] = useFetching(async () => {
+    const data = await MovieService.movieById(id!)
+    setMovie(data)
+  })
+
+  const selects = [
+    { id: "Номинации", element: <AwardsMovie id={id!}/> },
+    { id: "Комментарии", element: <CommentsMovie id={id!}/> }
+  ]
+
+  useEffect(() => {
+    fetchMovie()
+  }, [])
+
+  return (
+    <PageWrapper className={styles.movie}>
+      {isLoading
+        ? <Loader/>
+        :
+        <>
+          <MajorMovie movie={movie}/>
+          <div className={styles.buttons}>
+            {selects.map(s =>
+              <button
+                key={s.id}
+                onClick={() => setSelectValue(s.id)}
+                className={clsx({
+                  [styles.buttons__button]: true,
+                  [styles.buttons__button_active]: selectValue === s.id
+                })}
+              >{s.id}</button>
+            )}
+          </div>
+
+          {selects.find(s => s.id === selectValue)!.element}
+        </>
+      }
+      {isError}
+    </PageWrapper>
+  );
+};
+
+export default MovieById;

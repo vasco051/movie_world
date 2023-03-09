@@ -1,0 +1,23 @@
+.movie {
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #C8C9CB;
+  margin-bottom: 30px;
+
+  &__button {
+    background: inherit;
+    color: #C8C9CB;
+    padding: 10px 10px;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    &_active {
+      color: white;
+      font-weight: 700;
+    }
+  }
+}

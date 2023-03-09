@@ -1,0 +1,80 @@
+.major {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px 50px;
+  margin-bottom: 30px;
+
+  // TODO переписать preview и previewWrapper
+  &__previewWrapper {
+    max-height: 600px;
+    max-width: 600px;
+
+    width: 100%;
+  }
+
+  &__preview {
+    width: 100%;
+    border-radius: 20px;
+    max-height: 100%;
+  }
+
+
+  &__content {
+    max-width: 600px;
+    width: 100%;
+    color: #C8C9CB;
+  }
+
+  &__description {
+    font-size: 20px;
+    line-height: 30px;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+    margin-bottom: 20px;
+  }
+
+  &__info {
+    margin-bottom: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+  }
+}
+
+
+// блок header контентного блока
+.header {
+  margin-bottom: 20px;
+
+  &__title {
+    font-size: 30px;
+    color: white
+  }
+
+  &__subtitle {
+    font-size: 16px;
+  }
+}
+
+
+// блок info контентного блока
+.info {
+
+  &__item {
+    padding: 5px 0;
+    border-bottom: 1px dashed #C8C9CB;
+    margin-bottom: 5px;
+  }
+
+  &__text {
+    font-size: 20px;
+    line-height: 30px;
+    color: #C8C9CB;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}

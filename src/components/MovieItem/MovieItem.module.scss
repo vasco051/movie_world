@@ -1,0 +1,47 @@
+.movie {
+  position: relative;
+
+  width: 320px;
+  height: 470px;
+
+  background: #1a1d29;
+
+  border: 1px solid #353843;
+  border-radius: 8px;
+
+  overflow: hidden;
+
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 16px;
+
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), #1a1d29);
+  }
+
+  &__title {
+    font-size: 18px;
+    line-height: 21px;
+    color: #f9f9f9;
+
+    margin-bottom: 10px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 5px;
+  }
+}

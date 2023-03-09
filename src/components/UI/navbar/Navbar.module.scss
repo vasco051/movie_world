@@ -1,0 +1,34 @@
+.navbar {
+  &__list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 8px 16px;
+
+    text-decoration: none;
+    color: white;
+
+    svg {
+      fill: white;
+
+      max-width: 24px;
+      max-height: 24px;
+    }
+  }
+
+  &__link_active {
+    color: #02e7f5;
+
+    svg * {
+      fill: #02e7f5;
+    }
+  }
+}

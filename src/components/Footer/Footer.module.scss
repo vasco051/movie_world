@@ -1,0 +1,44 @@
+.footer {
+  //background: #090b13;
+  background: linear-gradient(0deg, #131313 -10%, rgba(19, 19, 19, 0) 100%);
+
+  padding: 50px 0 28px;
+  text-align: center;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-bottom: 32px;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    margin-bottom: 36px;
+  }
+
+  &__link {
+    color: white;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__description {
+    max-width: 456px;
+    margin-bottom: 41px;
+  }
+
+  &__copyright {
+  }
+}
