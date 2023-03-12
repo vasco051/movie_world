@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IAward, IComment, IMovieFull, IMovieShort, TItems } from "../models/movieModels";
-import { keyBD } from "../assets/keyBD";
+import { keyBD } from "./keyBD";
 
 
 export const Axios = axios.create({

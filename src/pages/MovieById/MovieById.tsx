@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom";
 import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
 import MajorMovie from "./MajorMovie/MajorMovie";
 import AwardsMovie from "./AwardsMovie/AwardsMovie";
-import CommentsMovie from "./CommentsMovie/CommentsMovie";
+import CommentsSection from "./CommentsSection/CommentsSection";
 import Loader from "../../components/UI/Loader/Loader";
 
 import { IMovieFull } from "../../models/movieModels";
 
 import { useFetching } from "../../hooks/useFetching";
 import { MovieService } from "../../API/movieService";
-
 
 import styles from "./MovieById.module.scss";
 import clsx from "clsx";
@@ -29,7 +28,7 @@ const MovieById: FC = () => {
 
   const selects = [
     { id: "Номинации", element: <AwardsMovie id={id!}/> },
-    { id: "Комментарии", element: <CommentsMovie id={id!}/> }
+    { id: "Комментарии", element: <CommentsSection id={id!}/> }
   ]
 
   useEffect(() => {
@@ -43,6 +42,8 @@ const MovieById: FC = () => {
         :
         <>
           <MajorMovie movie={movie}/>
+
+          {/*TODO переписать на нормальный выбор раздела*/}
           <div className={styles.buttons}>
             {selects.map(s =>
               <button
@@ -56,6 +57,7 @@ const MovieById: FC = () => {
             )}
           </div>
 
+          {/*TODO погуглить про нормальный способ отрисовки раздела*/}
           {selects.find(s => s.id === selectValue)!.element}
         </>
       }
