@@ -30,18 +30,18 @@ const Header: FC = observer(() => {
       <div className={clsx("container", styles.header__wrapper)}>
         <Link to={staticLinks.movies}>
           <img src={logo} alt="logo" className={styles.header__logo}/>
-          
+
         </Link>
         <div className={styles.header__rightMenu}>
           {user.isAuth && <Navbar links={NAVBAR_LINKS}/>}
 
           {user.isAuth
             ?
-            <Link to="/login">
+            <Link to={staticLinks.login}>
               <Button variant={"primary"} onClick={() => user.setIsAuth(!user.isAuth)}>Выйти</Button>
             </Link>
             :
-            <Link to="/login">
+            <Link to={staticLinks.login}>
               <Button variant={"primary"}>Вход / Регистрация</Button>
             </Link>
           }

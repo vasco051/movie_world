@@ -1,12 +1,14 @@
-import clsx from "clsx";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { staticLinks } from "../../assets/exportData/links";
 
 import logo from "../../assets/images/logo.png";
 
-import styles from "./Footer.module.scss";
 import { IFooter } from "./IFooter";
+
+import { staticLinks } from "../../assets/exportData/links";
+
+import styles from "./Footer.module.scss";
+import clsx from "clsx";
 
 
 const Footer: FC = () => {
@@ -14,10 +16,10 @@ const Footer: FC = () => {
 
   const footerContent: IFooter = {
     info: [
-      { to: "/private-policy", label: "политика конфиденциальности" },
-      { to: "/terms-use", label: "пользовательское соглашение" },
-      { to: "/support", label: "поддержка" },
-      { to: "/supported-devices", label: "поддерживаемые устройства" }
+      { to: staticLinks.privatePolicy, label: "политика конфиденциальности" },
+      { to: staticLinks.termsUse, label: "пользовательское соглашение" },
+      { to: staticLinks.support, label: "поддержка" },
+      { to: staticLinks.supportedDevices, label: "поддерживаемые устройства" }
     ]
   };
 

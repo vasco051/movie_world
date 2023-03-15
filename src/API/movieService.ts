@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { IAward, IComment, IMovieFull, IMovieShort, TItems } from "../models/movieModels";
 import { keyBD } from "./keyBD";
 
@@ -21,16 +21,6 @@ export class MovieService {
   static async movieById(id: number | string) {
     const response = await Axios.get<IMovieFull>("films/" + id)
     return response.data
-  }
-
-  static async awardsById(id: number | string) {
-    const response = await Axios.get<TItems<IAward>>("films/" + id + "/awards")
-    return response.data.items
-  }
-
-  static async commentsById(id: number | string) {
-    const response = await Axios.get<TItems<IComment>>("films/" + id + "/reviews")
-    return response.data.items
   }
 
   static async videosById(id: number | string) {

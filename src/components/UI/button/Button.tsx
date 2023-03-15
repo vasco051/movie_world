@@ -1,9 +1,11 @@
-import clsx from "clsx";
 import { FC } from "react";
+
 import { ReactComponent as PlayIcon } from "../../../assets/images/button/Play.svg";
-import styles from "./Button.module.scss";
+
 import { IButton } from "./IButton";
 
+import styles from "./Button.module.scss";
+import clsx from "clsx";
 
 const Button: FC<IButton> = ({ children, className, variant, ...props }) => {
   return (

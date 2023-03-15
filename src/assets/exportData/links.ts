@@ -3,7 +3,11 @@ export const staticLinks = {
   login: "/login",
   movies: "/movies",
   movieId: "/movies/:id",
-  about: "/about"
+  about: "/about",
+  privatePolicy: '/private-policy',
+  termsUse: '/terms-use',
+  support: '/support',
+  supportedDevices: '/supported-devices'
 };
 
 export const dynamicLink = {

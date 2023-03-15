@@ -1,12 +1,16 @@
 import { FC, useEffect, useState } from "react";
+
 import List from "../../components/List/List";
 import MovieItem from "../../components/MovieItem/MovieItem";
 import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
-import { IMovieShort } from "../../models/movieModels";
-import styles from "./Movies.module.scss"
-import { useFetching } from "../../hooks/useFetching";
-import { MovieService } from "../../API/movieService";
 import Loader from "../../components/UI/Loader/Loader";
+
+import { IMovieShort } from "../../models/movieModels";
+
+import { MovieService } from "../../API/movieService";
+import { useFetching } from "../../hooks/useFetching";
+
+import styles from "./Movies.module.scss"
 
 
 const Movies: FC = () => {

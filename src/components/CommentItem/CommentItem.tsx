@@ -1,6 +1,9 @@
 import { FC } from "react";
+
 import { CommentItemProps } from "./CommentItemProps";
+
 import { parseDate } from "../../utils/comment";
+
 import styles from "./CommentItem.module.scss"
 
 

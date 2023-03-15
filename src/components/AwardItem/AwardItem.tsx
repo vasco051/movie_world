@@ -1,5 +1,7 @@
 import { FC } from "react";
+
 import { AwardItemProps } from "./AwardItemProps";
+
 import styles from "./AwardItem.module.scss"
 
 

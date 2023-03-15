@@ -1,5 +1,7 @@
 import { FC } from "react";
+
 import { IInput } from "./IInput";
+
 import clsx from "clsx";
 import styles from "./IInput.module.scss";
 

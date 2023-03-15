@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
+import { observer } from "mobx-react-lite";
 
 import List from "../../../components/List/List";
 import CommentItem from "../../../components/CommentItem/CommentItem";
@@ -6,48 +7,31 @@ import Loader from "../../../components/UI/Loader/Loader";
 import Pagination from "../../../components/Pagination/Pagination";
 
 import { CommentsSectionProps } from "./CommentsSectionProps";
-import { IComment } from "../../../models/movieModels";
 
-import { MovieService } from "../../../API/movieService";
 import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
-import { useFetching } from "../../../hooks/useFetching";
+import { Context } from "../../../index";
 
 import styles from "./CommentsSection.module.scss"
 
 
-const CommentsSection: FC<CommentsSectionProps> = ({ id }) => {
-  const [ comments, setComments ] = useState<IComment[]>([])
-  const [ limitedComments, setLimitedComments ] = useState<IComment[]>([])
+const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
+  const { comments } = useContext(Context)
 
   const [ page, setPage ] = useState(1)
-  const [ limit, setLimit ] = useState(3)
-  const [ totalPages, setTotalPages ] = useState(0)
-
-  const [ fetchComments, isLoading, isError ] = useFetching(async () => {
-    const response = await MovieService.commentsById(id)
-
-    setComments(response)
-    setLimitedComments(getLimitedItems(response, page, limit))
-    setTotalPages(response.length)
-  })
+  const limit = 3
 
   useEffect(() => {
-    fetchComments()
+    comments.fetchComments(id!)
   }, [])
-
-  useEffect(() => {
-    setLimitedComments(getLimitedItems(comments, page, limit))
-  }, [ page, totalPages ])
-
 
   return (
     <section className={styles.commentsSection}>
-      {isLoading
+      {comments.isLoading
         ? <Loader/>
         :
         <>
           <List
-            items={limitedComments}
+            items={getLimitedItems(comments.list, page, limit)}
             className={styles.commentsSection__list}
             placeholder="Комментарии отсутствуют"
             renderItem={(comment) =>
@@ -55,7 +39,7 @@ const CommentsSection: FC<CommentsSectionProps> = ({ id }) => {
             }
           />
           <Pagination
-            totalPages={getTotalPages(totalPages, limit)}
+            totalPages={getTotalPages(comments.list.length, limit)}
             page={page}
             setPage={(page) => setPage(page)}
             className={styles.commentsSection__pagination}
@@ -63,9 +47,9 @@ const CommentsSection: FC<CommentsSectionProps> = ({ id }) => {
         </>
       }
 
-      <h2 className={styles.commentsSection__error}>{isError}</h2>
+      <h2 className={styles.commentsSection__error}>{comments.isError}</h2>
     </section>
   );
-};
+});
 
 export default CommentsSection;

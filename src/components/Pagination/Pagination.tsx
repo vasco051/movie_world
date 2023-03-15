@@ -1,6 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
+
 import { PaginationProps } from "./PaginationProps";
+
 import { getPagesArray } from "../../utils/pagination";
+
 import styles from './Pagination.module.scss'
 import clsx from "clsx";
 

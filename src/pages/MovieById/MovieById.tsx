@@ -43,7 +43,6 @@ const MovieById: FC = () => {
         <>
           <MajorMovie movie={movie}/>
 
-          {/*TODO переписать на нормальный выбор раздела*/}
           <div className={styles.buttons}>
             {selects.map(s =>
               <button

@@ -17,6 +17,10 @@ export default class UserStore implements IUserStore {
 
   // sets
   setIsAuth(isAuth: boolean) {
+    isAuth
+      ? localStorage.setItem('auth', 'true')
+      : localStorage.removeItem('auth')
+
     this._isAuth = isAuth;
   }
 }

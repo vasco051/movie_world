@@ -2,7 +2,7 @@ import { createContext } from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
-import store from "./store/appStore";
+import store from "./store/AppStore";
 
 import { IAppStore } from "./store/IAppStore";
 
