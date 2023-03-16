@@ -2,9 +2,10 @@ import { makeAutoObservable, observable, values } from "mobx";
 import { IComment } from "../../models/movieModels";
 import CommentsService from "../../API/CommentsService";
 import { ICommentsStore } from "./ICommentsStore";
+import axios, { AxiosError } from "axios";
 
 
-export default class CommentsStore implements ICommentsStore{
+export default class CommentsStore implements ICommentsStore {
   _comments = observable.map<number, IComment>()
   _isLoading: boolean = false
   _isError: string = ""
@@ -20,7 +21,7 @@ export default class CommentsStore implements ICommentsStore{
     return values(this._comments)
   }
 
-  get isLoading(){
+  get isLoading() {
     return this._isLoading
   }
 
@@ -53,8 +54,10 @@ export default class CommentsStore implements ICommentsStore{
       const response = await CommentsService.commentsById(id)
       this.setComments(response.data.items)
 
-    } catch (e: any) {
-      this.setError(e.message)
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        this.setError(err.message)
+      }
 
     } finally {
       this.setLoading(false)

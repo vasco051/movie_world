@@ -1,10 +1,10 @@
-import { IUserStore } from "./userStore/IUserStore";
 import { ICommentsStore } from "./commentsStore/ICommentsStore";
 import { IAwardsStore } from "./awardsStore/IAwardsStore";
+import { IAuthStore } from "./authStore/IAuthStore";
 
 
 export interface IAppStore {
-  user: IUserStore;
   comments: ICommentsStore
   awards: IAwardsStore
+  auth: IAuthStore
 }

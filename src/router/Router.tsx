@@ -7,17 +7,17 @@ import { privateRoutes, publicRoutes } from "./routes";
 
 
 const AppRouter: FC = observer(() => {
-  const { user } = useContext(Context);
+  const { auth } = useContext(Context);
 
   useEffect(() => {
-    if (localStorage.getItem("auth")) {
-      user.setIsAuth(true)
+    if (localStorage.getItem("auth_token")) {
+      auth.setAuth(true)
     }
   }, [])
 
   return (
     <Routes>
-      {user.isAuth
+      {auth.isAuth
         ? privateRoutes.map((route) => (
           <Route
             path={route.path}

@@ -16,16 +16,20 @@
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 
-  &__title {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    color: #ffffff;
+  &__title{
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-    margin-bottom: 16px;
+  &__inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-bottom: 20px;
   }
 
   &__input {
@@ -40,9 +44,12 @@
     font-size: 16px;
     line-height: 24px;
     color: #c8c9cb;
-
-    margin-bottom: 32px;
   }
+
+  &__error{
+    color: orangered;
+  }
+
 
   &__button {
     width: 100%;

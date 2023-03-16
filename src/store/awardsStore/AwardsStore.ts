@@ -1,6 +1,6 @@
 import { makeAutoObservable, observable, values } from "mobx";
 import { IAward } from "../../models/movieModels";
-import AwardsService from "../../API/AwardsServise";
+import AwardsService from "../../API/AwardsService";
 import { IAwardsStore } from "./IAwardsStore";
 
 

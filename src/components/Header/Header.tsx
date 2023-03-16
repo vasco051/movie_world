@@ -15,7 +15,7 @@ import styles from "./Header.module.scss";
 
 
 const Header: FC = observer(() => {
-  const { user } = useContext(Context);
+  const { auth } = useContext(Context);
   const location = useLocation()
 
   const pagesIgnoreHeader = [
@@ -23,7 +23,7 @@ const Header: FC = observer(() => {
     staticLinks.basic
   ]
 
-  if (!user.isAuth && pagesIgnoreHeader.includes(location.pathname)) return null
+  if (!auth.isAuth && pagesIgnoreHeader.includes(location.pathname)) return null
 
   return (
     <header className={styles.header}>
@@ -33,12 +33,12 @@ const Header: FC = observer(() => {
 
         </Link>
         <div className={styles.header__rightMenu}>
-          {user.isAuth && <Navbar links={NAVBAR_LINKS}/>}
+          {auth.isAuth && <Navbar links={NAVBAR_LINKS}/>}
 
-          {user.isAuth
+          {auth.isAuth
             ?
             <Link to={staticLinks.login}>
-              <Button variant={"primary"} onClick={() => user.setIsAuth(!user.isAuth)}>Выйти</Button>
+              <Button variant={"primary"} onClick={() => auth.setAuth(false)}>Выйти</Button>
             </Link>
             :
             <Link to={staticLinks.login}>
