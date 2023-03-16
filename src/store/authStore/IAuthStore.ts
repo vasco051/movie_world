@@ -14,5 +14,6 @@ export interface IAuthStore {
   setError(error: string): void
   setLoading(value: boolean): void
 
+  // TODO переписать без any
   authorization(user: IUser): any
 }

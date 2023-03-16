@@ -44,6 +44,7 @@ const Login: FC = observer(() => {
     validate: values => {
       const errors: FormikValues = {}
 
+      // TODO чекнуть библиотеку по валидации
       if (!values.email) {
         errors.email = "Введите адрес почты"
       }
