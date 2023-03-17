@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { useNavigate } from "react-router-dom";
-import { FormikValues, useFormik } from "formik";
+import { useFormik } from "formik";
 
 import { Context } from "../../index";
 import { staticLinks } from "../../assets/exportData/links";
@@ -21,6 +21,7 @@ const Login: FC = observer(() => {
   const { auth } = useContext(Context);
   const navigate = useNavigate()
 
+
   const formik = useFormik({
     initialValues: {
       email: "applicant3@mail.ru",
@@ -34,24 +35,12 @@ const Login: FC = observer(() => {
 
       const response = await auth.authorization(userData)
 
-      if ("data" in response) {
+      if ('data' in response){
         navigate(staticLinks.movies)
 
-      } else {
-        formik.setErrors({ password: "Вы ввели некорректные данные" })
+      } else if (response.errors){
+        formik.setErrors(response.errors)
       }
-    },
-    validate: values => {
-      const errors: FormikValues = {}
-
-      // TODO чекнуть библиотеку по валидации
-      if (!values.email) {
-        errors.email = "Введите адрес почты"
-      }
-      if (!values.password) {
-        errors.password = "Введите пароль"
-      }
-      return errors
     }
   })
 
@@ -76,8 +65,7 @@ const Login: FC = observer(() => {
               value={formik.values.email}
               className={styles.login__input}
             />
-
-            {formik.errors.email && formik.touched.email &&
+            {formik.errors?.email &&
               <p className={styles.login__error}>{formik.errors.email}</p>
             }
 
@@ -85,15 +73,19 @@ const Login: FC = observer(() => {
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder="Пароль"
               onChange={formik.handleChange}
               value={formik.values.password}
               className={styles.login__input}
             />
-
-            {formik.errors.password && formik.touched.password &&
+            {formik.errors?.password &&
               <p className={styles.login__error}>{formik.errors.password}</p>
             }
+
+            {!formik.errors.email && !formik.errors.password &&
+              <p className={styles.login__error}>{auth.isError}</p>
+            }
+
           </div>
 
           {auth.isLoading

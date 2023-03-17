@@ -1,4 +1,4 @@
-import { IAward, TItems } from "../models/movieModels";
+import { IAward, TItems } from "../../models/movieModels";
 import { Axios } from "./movieService";
 
 

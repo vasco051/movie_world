@@ -1,4 +1,6 @@
 import { IUser } from "../../models/userModels";
+import { APIError, ILogin } from "../../models/API/IApi";
+import { AxiosResponse } from "axios";
 
 
 export interface IAuthStore {
@@ -15,5 +17,5 @@ export interface IAuthStore {
   setLoading(value: boolean): void
 
   // TODO переписать без any
-  authorization(user: IUser): any
+  authorization(user: IUser): Promise<APIError | AxiosResponse<ILogin, any>>
 }

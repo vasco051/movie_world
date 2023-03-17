@@ -10,10 +10,11 @@ import Loader from "../../components/UI/Loader/Loader";
 import { IMovieFull } from "../../models/movieModels";
 
 import { useFetching } from "../../hooks/useFetching";
-import { MovieService } from "../../API/movieService";
+import { MovieService } from "../../API/rest/movieService";
 
 import styles from "./MovieById.module.scss";
 import clsx from "clsx";
+import { log } from "util";
 
 
 const MovieById: FC = () => {
@@ -33,6 +34,7 @@ const MovieById: FC = () => {
 
   useEffect(() => {
     fetchMovie()
+    MovieService.similarsById(id!).then(data => console.log(data))
   }, [])
 
   return (

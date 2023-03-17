@@ -1,6 +1,6 @@
-import axios, { AxiosError } from "axios";
-import { IAward, IComment, IMovieFull, IMovieShort, TItems } from "../models/movieModels";
-import { keyBD } from "./keyBD";
+import axios from "axios";
+import { IMovieFull, IMovieShort, TItems } from "../../models/movieModels";
+import { keyBD } from "../keyBD";
 
 
 export const Axios = axios.create({
@@ -13,8 +13,13 @@ export const Axios = axios.create({
 
 
 export class MovieService {
-  static async allMovies() {
-    const response = await Axios.get<TItems<IMovieShort>>("films")
+  static async allMovies(page: number = 1) {
+    const response = await Axios.get<TItems<IMovieShort>>("films", {
+      params: {
+        page,
+        order: 'NUM_VOTE'
+      }
+    })
     return response.data.items
   }
 
@@ -25,6 +30,11 @@ export class MovieService {
 
   static async videosById(id: number | string) {
     const response = await Axios.get("films/" + id + "/videos")
+    return response.data.items
+  }
+
+  static async similarsById(id: number | string) {
+    const response = await Axios.get("films/" + id + "/similars")
     return response.data.items
   }
 }

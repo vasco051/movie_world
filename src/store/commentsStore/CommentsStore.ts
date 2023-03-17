@@ -1,6 +1,6 @@
 import { makeAutoObservable, observable, values } from "mobx";
 import { IComment } from "../../models/movieModels";
-import CommentsService from "../../API/CommentsService";
+import CommentsService from "../../API/rest/CommentsService";
 import { ICommentsStore } from "./ICommentsStore";
 import axios, { AxiosError } from "axios";
 

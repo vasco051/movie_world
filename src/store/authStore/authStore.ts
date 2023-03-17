@@ -1,8 +1,8 @@
-import { IUser } from "../../models/userModels";
-import AuthService from "../../API/AuthService";
-import axios from "axios";
-import { IAuthStore } from "./IAuthStore";
 import { makeAutoObservable } from "mobx";
+
+import { IUser } from "../../models/userModels";
+import AuthService from "../../API/rest/AuthService";
+import { IAuthStore } from "./IAuthStore";
 
 
 export default class AuthStore implements IAuthStore {
@@ -32,7 +32,7 @@ export default class AuthStore implements IAuthStore {
 
   // sets
   setAuth(auth: boolean) {
-    if (!auth) localStorage.removeItem('auth_token')
+    if (!auth) localStorage.removeItem("auth_token")
     this._isAuth = auth
   }
 
@@ -46,27 +46,24 @@ export default class AuthStore implements IAuthStore {
 
 
   // async
-  // TODO подумать над возвращаемыми значениями
   async authorization(user: IUser) {
-    try {
-      this.setLoading(true)
+    this.setLoading(true)
 
-      const response = await AuthService.authorization(user)
+    const response = await AuthService.authorization(user)
 
-      localStorage.setItem('auth_token', response.data.token);
+    if ("data" in response) {
+      localStorage.setItem("auth_token", response.data.token)
+
+      this.setError("")
       this.setAuth(true)
-      this.setError('')
+      this.setLoading(false)
 
       return response
-
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        this.setError(err.message)
-        return err
-      }
-
-    } finally {
-      this.setLoading(false)
     }
+
+    if (response.status === 401) this.setError("Неправильный логин или пароль")
+
+    this.setLoading(false)
+    return response
   }
 }

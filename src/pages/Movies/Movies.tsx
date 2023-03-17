@@ -7,7 +7,7 @@ import Loader from "../../components/UI/Loader/Loader";
 
 import { IMovieShort } from "../../models/movieModels";
 
-import { MovieService } from "../../API/movieService";
+import { MovieService } from "../../API/rest/movieService";
 import { useFetching } from "../../hooks/useFetching";
 
 import styles from "./Movies.module.scss"

@@ -1,5 +1,5 @@
 import { Axios } from "./movieService";
-import { IComment, TItems } from "../models/movieModels";
+import { IComment, TItems } from "../../models/movieModels";
 
 
 export default class CommentsService {
