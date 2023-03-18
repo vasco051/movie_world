@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { MovieItemProps } from "./MovieItemProps";
-
 import { dynamicLink } from "../../assets/exportData/links";
 
 import Button from "../UI/button/Button";
 
 import styles from "./MovieItem.module.scss";
+
+import { MovieItemProps } from "./MovieItemProps";
 
 
 const MovieItem: FC<MovieItemProps> = ({ movie }) => {
@@ -28,7 +28,7 @@ const MovieItem: FC<MovieItemProps> = ({ movie }) => {
           <Link to={dynamicLink.movieId(movie.kinopoiskId)}>
             <Button variant={"outlinedWithIcon"}/>
           </Link>
-          
+
           <Link to={dynamicLink.movieId(movie.kinopoiskId)}>
             <Button variant={"primary"}>Подробнее</Button>
           </Link>

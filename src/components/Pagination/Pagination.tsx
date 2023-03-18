@@ -1,17 +1,24 @@
+import clsx from "clsx";
 import { FC } from "react";
-
-import { PaginationProps } from "./PaginationProps";
 
 import { getPagesArray } from "../../utils/pagination";
 
-import styles from './Pagination.module.scss'
-import clsx from "clsx";
+import styles from "./Pagination.module.scss";
+
+import { PaginationProps } from "./PaginationProps";
 
 
-const Pagination: FC<PaginationProps> = ({ page, setPage, totalPages , className}) => {
-  const pagesArray = getPagesArray(totalPages)
+const Pagination: FC<PaginationProps> = ({
+  page,
+  setPage,
+  totalPages,
+  className
+}) => {
+  const pagesArray = getPagesArray(totalPages);
 
-  if (pagesArray.length <= 1) return null
+  if (pagesArray.length <= 1) {
+    return null;
+  }
 
   return (
     <section className={clsx(styles.pagination, className)}>

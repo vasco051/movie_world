@@ -1,4 +1,5 @@
 import React from "react";
 
-export interface IInput extends React.InputHTMLAttributes<HTMLInputElement>{
+
+export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
 }

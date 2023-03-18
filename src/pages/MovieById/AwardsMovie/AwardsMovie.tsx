@@ -1,38 +1,38 @@
-import { FC, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-
-import { AwardsMovieProps } from "./AwardsMovieProps";
+import { FC, useContext, useEffect, useState } from "react";
 
 import AwardItem from "../../../components/AwardItem/AwardItem";
 import List from "../../../components/List/List";
-import Loader from "../../../components/UI/Loader/Loader";
 import Pagination from "../../../components/Pagination/Pagination";
-
-import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
+import Loader from "../../../components/UI/Loader/Loader";
 import { Context } from "../../../index";
 
-import styles from "./AwardsMovie.module.scss"
+import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
+
+import styles from "./AwardsMovie.module.scss";
+
+import { AwardsMovieProps } from "./AwardsMovieProps";
 
 
 const AwardsMovie: FC<AwardsMovieProps> = observer(({ id }) => {
-  const { awards } = useContext(Context)
+  const { awardsStore } = useContext(Context);
 
-  const [ page, setPage ] = useState(1)
-  const limit = 5
+  const [ page, setPage ] = useState(1);
+  const limit = 5;
 
   useEffect(() => {
-    awards.fetchAwards(id!)
-  }, [])
+    awardsStore.fetchAwards(id!);
+  }, []);
 
   return (
     <section>
       {/*Нет нормального ID в аргументах, поэтому шакалю так*/}
-      {awards.isLoading
+      {awardsStore.isLoading
         ? <Loader/>
         :
         <>
           <List
-            items={getLimitedItems(awards.list, page, limit)}
+            items={getLimitedItems(awardsStore.list, page, limit)}
             placeholder="Номинации отсутствуют"
             className={styles.list}
             renderItem={(award) =>
@@ -40,7 +40,7 @@ const AwardsMovie: FC<AwardsMovieProps> = observer(({ id }) => {
             }
           />
           <Pagination
-            totalPages={getTotalPages(awards.list.length, limit)}
+            totalPages={getTotalPages(awardsStore.list.length, limit)}
             page={page}
             setPage={(page) => setPage(page)}
             className={styles.commentsSection__pagination}
@@ -48,7 +48,7 @@ const AwardsMovie: FC<AwardsMovieProps> = observer(({ id }) => {
         </>
       }
 
-      <h2>{awards.isError}</h2>
+      {awardsStore.isError && <h2>{awardsStore.isError}</h2>}
     </section>
   );
 });

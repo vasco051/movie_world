@@ -1,34 +1,48 @@
+import clsx from "clsx";
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { staticLinks } from "../../assets/exportData/links";
+
 import logo from "../../assets/images/logo.png";
+
+import styles from "./Footer.module.scss";
 
 import { IFooter } from "./IFooter";
 
-import { staticLinks } from "../../assets/exportData/links";
-
-import styles from "./Footer.module.scss";
-import clsx from "clsx";
-
 
 const Footer: FC = () => {
-  const location = useLocation()
+  const location = useLocation();
 
   const footerContent: IFooter = {
     info: [
-      { to: staticLinks.privatePolicy, label: "политика конфиденциальности" },
-      { to: staticLinks.termsUse, label: "пользовательское соглашение" },
-      { to: staticLinks.support, label: "поддержка" },
-      { to: staticLinks.supportedDevices, label: "поддерживаемые устройства" }
+      {
+        to: staticLinks.privatePolicy,
+        label: "политика конфиденциальности"
+      },
+      {
+        to: staticLinks.termsUse,
+        label: "пользовательское соглашение"
+      },
+      {
+        to: staticLinks.support,
+        label: "поддержка"
+      },
+      {
+        to: staticLinks.supportedDevices,
+        label: "поддерживаемые устройства"
+      }
     ]
   };
 
   const pagesIgnoreFooter = [
     staticLinks.basic,
     staticLinks.login
-  ]
+  ];
 
-  if (pagesIgnoreFooter.includes(location.pathname)) return null
+  if (pagesIgnoreFooter.includes(location.pathname)) {
+    return null;
+  }
 
   return (
     <footer className={styles.footer}>

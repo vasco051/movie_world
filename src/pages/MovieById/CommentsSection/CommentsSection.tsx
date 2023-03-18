@@ -1,37 +1,37 @@
-import { FC, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
+import { FC, useContext, useEffect, useState } from "react";
+import CommentItem from "../../../components/CommentItem/CommentItem";
 
 import List from "../../../components/List/List";
-import CommentItem from "../../../components/CommentItem/CommentItem";
-import Loader from "../../../components/UI/Loader/Loader";
 import Pagination from "../../../components/Pagination/Pagination";
+import Loader from "../../../components/UI/Loader/Loader";
+import { Context } from "../../../index";
+
+import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
+
+import styles from "./CommentsSection.module.scss";
 
 import { CommentsSectionProps } from "./CommentsSectionProps";
 
-import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
-import { Context } from "../../../index";
-
-import styles from "./CommentsSection.module.scss"
-
 
 const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
-  const { comments } = useContext(Context)
+  const { commentsStore } = useContext(Context);
 
-  const [ page, setPage ] = useState(1)
-  const limit = 3
+  const [ page, setPage ] = useState(1);
+  const limit = 3;
 
   useEffect(() => {
-    comments.fetchComments(id!)
-  }, [])
+    commentsStore.fetchComments(id!);
+  }, []);
 
   return (
     <section className={styles.commentsSection}>
-      {comments.isLoading
+      {commentsStore.isLoading
         ? <Loader/>
         :
         <>
           <List
-            items={getLimitedItems(comments.list, page, limit)}
+            items={getLimitedItems(commentsStore.list, page, limit)}
             className={styles.commentsSection__list}
             placeholder="Комментарии отсутствуют"
             renderItem={(comment) =>
@@ -39,7 +39,7 @@ const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
             }
           />
           <Pagination
-            totalPages={getTotalPages(comments.list.length, limit)}
+            totalPages={getTotalPages(commentsStore.list.length, limit)}
             page={page}
             setPage={(page) => setPage(page)}
             className={styles.commentsSection__pagination}
@@ -47,7 +47,7 @@ const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
         </>
       }
 
-      <h2 className={styles.commentsSection__error}>{comments.isError}</h2>
+      {commentsStore.isError && <h2 className={styles.commentsSection__error}>{commentsStore.isError}</h2>}
     </section>
   );
 });

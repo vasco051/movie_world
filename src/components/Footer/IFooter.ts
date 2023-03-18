@@ -1,8 +1,8 @@
 export interface IFooterInfo {
-  to: string
-  label: string
+  to: string;
+  label: string;
 }
 
 export interface IFooter {
-  info: IFooterInfo[]
+  info: IFooterInfo[];
 }

@@ -1,16 +1,16 @@
-import { FC, useContext } from "react";
-import { observer } from "mobx-react-lite";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-
-import { Context } from "../../index";
+import { observer } from "mobx-react-lite";
+import { FC, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { staticLinks } from "../../assets/exportData/links";
 
 import logo from "../../assets/images/login/logo.png";
 import Button from "../../components/UI/button/Button";
 import Input from "../../components/UI/input/Input";
-import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
 import Loader from "../../components/UI/Loader/Loader";
+import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
+
+import { Context } from "../../index";
 
 import { IUser } from "../../models/userModels";
 
@@ -18,8 +18,8 @@ import styles from "./Login.module.scss";
 
 
 const Login: FC = observer(() => {
-  const { auth } = useContext(Context);
-  const navigate = useNavigate()
+  const { authStore } = useContext(Context);
+  const navigate = useNavigate();
 
 
   const formik = useFormik({
@@ -31,18 +31,19 @@ const Login: FC = observer(() => {
       const userData: IUser = {
         email: values.email,
         password: values.password
+      };
+
+      const response = await authStore.authorization(userData);
+
+      if ("data" in response) {
+        navigate(staticLinks.movies);
+
       }
-
-      const response = await auth.authorization(userData)
-
-      if ('data' in response){
-        navigate(staticLinks.movies)
-
-      } else if (response.errors){
-        formik.setErrors(response.errors)
+      else if (response.errors) {
+        formik.setErrors(response.errors);
       }
     }
-  })
+  });
 
 
   return (
@@ -82,13 +83,13 @@ const Login: FC = observer(() => {
               <p className={styles.login__error}>{formik.errors.password}</p>
             }
 
-            {!formik.errors.email && !formik.errors.password &&
-              <p className={styles.login__error}>{auth.isError}</p>
+            {!formik.errors.email && !formik.errors.password && authStore.isError &&
+              <p className={styles.login__error}>{authStore.isError}</p>
             }
 
           </div>
 
-          {auth.isLoading
+          {authStore.isLoading
             ? <Loader/>
             :
             <Button

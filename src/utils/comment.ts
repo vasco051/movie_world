@@ -1,1 +1,1 @@
-export const parseDate = (date: string) => date.split("T")
+export const parseDate = (date: string) => date.split("T");

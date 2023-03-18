@@ -1,21 +1,25 @@
 import { ObservableMap } from "mobx";
-import { IAward} from "../../models/movieModels";
+import { IAward } from "../../models/movieModels";
 
 
-export interface IAwardsStore{
-  _awards: ObservableMap<number, IAward>
-  _isLoading: boolean
-  _isError: string
+export interface IAwardsStore {
+  _awards: ObservableMap<number, IAward>;
+  _isLoading: boolean;
+  _isError: string | null;
 
 
-  get list(): readonly IAward[]
-  get isLoading(): boolean
-  get isError(): string
+  get list(): readonly IAward[];
 
-  setLoading(value: boolean): void
-  setError(error: string): void
-  setAwards(comments: IAward[]): void
+  get isLoading(): boolean;
+
+  get isError(): string | null;
+
+  setLoading(value: boolean): void;
+
+  setError(error: string | null): void;
+
+  setAwards(comments: IAward[]): void;
 
 
-  fetchAwards(id: string | number) :void
+  fetchAwards(id: string | number): void;
 }

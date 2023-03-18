@@ -1,12 +1,14 @@
+import clsx from "clsx";
 import { FC } from "react";
+import styles from "./PageWrapper.module.scss";
 
 import { PageWrapperProps } from "./PageWrapperProps";
 
-import clsx from "clsx";
-import styles from "./PageWrapper.module.scss";
 
-
-const PageWrapper: FC<PageWrapperProps> = ({ children, className }) => {
+const PageWrapper: FC<PageWrapperProps> = ({
+  children,
+  className
+}) => {
   return (
     <main className={clsx("container", styles.pageWrapper, className)}>
       {children}

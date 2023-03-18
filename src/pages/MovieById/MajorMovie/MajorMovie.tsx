@@ -1,21 +1,32 @@
+import clsx from "clsx";
 import { FC } from "react";
 
-import { getAgeLimit, getCountries, getGenres } from "../../../utils/movie";
-
 import Button from "../../../components/UI/button/Button";
-import { MajoeMovie } from "./MajoeMovie";
 
-import clsx from "clsx";
-import styles from "./MajorMovie.module.scss"
+import { getAgeLimit, getCountries, getGenres } from "../../../utils/movie";
+import { MajoeMovie } from "./MajoeMovie";
+import styles from "./MajorMovie.module.scss";
 
 
 const MajorMovie: FC<MajoeMovie> = ({ movie }) => {
   const infoContent: { id: number, body: string | number }[] = [
-    { id: 1, body: getCountries(movie?.countries) },
-    { id: 2, body: getGenres(movie?.genres) },
-    { id: 3, body: movie?.year || "Даты премьеры нет" },
-    { id: 4, body: getAgeLimit(movie?.ratingAgeLimits) }
-  ]
+    {
+      id: 1,
+      body: getCountries(movie?.countries)
+    },
+    {
+      id: 2,
+      body: getGenres(movie?.genres)
+    },
+    {
+      id: 3,
+      body: movie?.year || "Даты премьеры нет"
+    },
+    {
+      id: 4,
+      body: getAgeLimit(movie?.ratingAgeLimits)
+    }
+  ];
 
   return (
     <section className={styles.major}>

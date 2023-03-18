@@ -4,10 +4,10 @@ export const staticLinks = {
   movies: "/movies",
   movieId: "/movies/:id",
   about: "/about",
-  privatePolicy: '/private-policy',
-  termsUse: '/terms-use',
-  support: '/support',
-  supportedDevices: '/supported-devices'
+  privatePolicy: "/private-policy",
+  termsUse: "/terms-use",
+  support: "/support",
+  supportedDevices: "/supported-devices"
 };
 
 export const dynamicLink = {

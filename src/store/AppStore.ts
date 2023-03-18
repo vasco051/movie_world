@@ -1,15 +1,17 @@
 import { makeAutoObservable } from "mobx";
+import AuthStore from "./authStore/authStore";
+import AwardsStore from "./awardsStore/AwardsStore";
+import CommentsStore from "./commentsStore/CommentsStore";
 
 import { IAppStore } from "./IAppStore";
-import CommentsStore from "./commentsStore/CommentsStore";
-import AwardsStore from "./awardsStore/AwardsStore";
-import AuthStore from "./authStore/authStore";
+import { MoviesStore } from "./moviesStore/moviesStore";
 
 
 class AppStore implements IAppStore {
-  comments = new CommentsStore()
-  awards = new AwardsStore()
-  auth = new AuthStore()
+  commentsStore = new CommentsStore();
+  awardsStore = new AwardsStore();
+  authStore = new AuthStore();
+  moviesStore = new MoviesStore();
 
   constructor() {
     makeAutoObservable(this);

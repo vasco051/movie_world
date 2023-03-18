@@ -1,21 +1,24 @@
-import { IUser } from "../../models/userModels";
-import { APIError, ILogin } from "../../models/API/IApi";
 import { AxiosResponse } from "axios";
+import { APIError, ILogin } from "../../models/API/IApi";
+import { IUser } from "../../models/userModels";
 
 
 export interface IAuthStore {
-  _isAuth: boolean
-  _isLoading: boolean
-  _isError: string
+  _isAuth: boolean;
+  _isLoading: boolean;
+  _isError: string | null;
 
-  get isAuth(): boolean
-  get isLoading(): boolean
-  get isError(): string
+  get isAuth(): boolean;
 
-  setAuth(auth: boolean): void
-  setError(error: string): void
-  setLoading(value: boolean): void
+  get isLoading(): boolean;
 
-  // TODO переписать без any
-  authorization(user: IUser): Promise<APIError | AxiosResponse<ILogin, any>>
+  get isError(): string | null;
+
+  setAuth(auth: boolean): void;
+
+  setError(error: string | null): void;
+
+  setLoading(value: boolean): void;
+
+  authorization(user: IUser): Promise<APIError | AxiosResponse<ILogin, any>>;
 }

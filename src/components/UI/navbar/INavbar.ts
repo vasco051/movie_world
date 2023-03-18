@@ -1,5 +1,6 @@
-import { ILink } from '../../../models/IRoutes';
+import { ILink } from "../../../models/IRoutes";
 
-export interface INavbar{
+
+export interface INavbar {
   links: ILink[];
 }

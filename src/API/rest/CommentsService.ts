@@ -1,9 +1,14 @@
+import { comOrders, TItems } from "../../models/commonModels";
+import { IComment } from "../../models/movieModels";
 import { Axios } from "./movieService";
-import { IComment, TItems } from "../../models/movieModels";
 
 
 export default class CommentsService {
-  static async commentsById(id: number | string) {
-    return await Axios.get<TItems<IComment>>("films/" + id + "/reviews")
+  static async commentsById(id: number | string, order: comOrders) {
+    return await Axios.get<TItems<IComment>>("films/" + id + "/reviews", {
+      params: {
+        order
+      }
+    });
   }
 }

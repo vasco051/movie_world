@@ -1,3 +1,3 @@
 export interface CommentsSectionProps {
-  id: string
+  id: string;
 }

@@ -1,7 +1,3 @@
-export interface TItems<T> {
-  items: T[]
-}
-
 export interface ICountry {
   country: string;
 }
@@ -11,17 +7,17 @@ export interface IGenre {
 }
 
 export interface IPerson {
-  kinopoiskId: number
-  nameRu: string | null
-  nameEn: string | null
-  sex: string
-  posterUrl: string
-  growth: number | null
-  birthday: string | null
-  age: number | null
-  birthplace: string | null
-  deathplace: string | null
-  profession: string | null
+  kinopoiskId: number;
+  nameRu: string | null;
+  nameEn: string | null;
+  sex: string;
+  posterUrl: string;
+  growth: number | null;
+  birthday: string | null;
+  age: number | null;
+  birthplace: string | null;
+  deathplace: string | null;
+  profession: string | null;
 }
 
 export interface IMovieShort {
@@ -83,22 +79,22 @@ export interface IMovieFull {
 }
 
 export interface IAward {
-  name: string
-  win: boolean
-  imageUrl: string | null
-  nominationName: string
-  year: number
-  persons: IPerson[]
+  name: string;
+  win: boolean;
+  imageUrl: string | null;
+  nominationName: string;
+  year: number;
+  persons: IPerson[];
 }
 
 export interface IComment {
-  kinopoiskId: number
+  kinopoiskId: number;
   // TODO enum [ POSITIVE, NEGATIVE, NEUTRAL, UNKNOWN ]
-  type: string
-  author: string
-  date: string
-  positiveRating: number
-  negativeRating: number
-  title: string | null
-  description: string
+  type: string;
+  author: string;
+  date: string;
+  positiveRating: number;
+  negativeRating: number;
+  title: string | null;
+  description: string;
 }

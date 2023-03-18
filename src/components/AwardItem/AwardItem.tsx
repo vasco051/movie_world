@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import { AwardItemProps } from "./AwardItemProps";
+import styles from "./AwardItem.module.scss";
 
-import styles from "./AwardItem.module.scss"
+import { AwardItemProps } from "./AwardItemProps";
 
 
 const AwardItem: FC<AwardItemProps> = ({ award }) => {

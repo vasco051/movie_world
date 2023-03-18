@@ -1,3 +1,3 @@
 export interface AwardsMovieProps {
-  id: string
+  id: string;
 }
