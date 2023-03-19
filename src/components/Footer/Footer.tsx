@@ -1,10 +1,11 @@
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import { staticLinks } from "../../assets/exportData/links";
 
 import logo from "../../assets/images/logo.png";
+import { Context } from "../../index";
 
 import styles from "./Footer.module.scss";
 
@@ -12,6 +13,8 @@ import { IFooter } from "./IFooter";
 
 
 const Footer: FC = () => {
+  const { authStore } = useContext(Context);
+
   const location = useLocation();
 
   const footerContent: IFooter = {
@@ -40,9 +43,13 @@ const Footer: FC = () => {
     staticLinks.login
   ];
 
-  if (pagesIgnoreFooter.includes(location.pathname)) {
+  if (pagesIgnoreFooter.includes(location.pathname) && !authStore.isAuth) {
     return null;
   }
+
+  // if (pagesIgnoreFooter.includes(location.pathname)) {
+  //   return null;
+  // }
 
   return (
     <footer className={styles.footer}>
