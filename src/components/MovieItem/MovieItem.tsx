@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { dynamicLink } from "../../assets/exportData/links";
 
-import Button from "../UI/button/Button";
+import { ReactComponent as Star } from "../../assets/images/icon/star.svg";
 
 import styles from "./MovieItem.module.scss";
 
@@ -12,29 +12,28 @@ import { MovieItemProps } from "./MovieItemProps";
 
 const MovieItem: FC<MovieItemProps> = ({ movie }) => {
   return (
-    <div className={styles.movie}>
-      <img
-        src={movie.posterUrlPreview}
-        alt="Preview"
-        className={styles.movie__image}
-      />
+    <Link to={dynamicLink.movieId(movie.kinopoiskId)}>
+      <div className={styles.movie}>
+        <img
+          src={movie.posterUrlPreview}
+          alt="Preview"
+          className={styles.movie__image}
+        />
 
-      <div className={styles.movie__content}>
-        <h2 className={styles.movie__title}>
-          {movie.nameRu || movie.nameOriginal} ({movie.year})
-        </h2>
+        <div className={styles.movie__content}>
+          <h2 className={styles.movie__title}>
+            {movie.nameRu || movie.nameOriginal}
+          </h2>
 
-        <div className={styles.movie__buttons}>
-          <Link to={dynamicLink.movieId(movie.kinopoiskId)}>
-            <Button variant={"outlinedWithIcon"}/>
-          </Link>
+          <div className={styles.movie__ratingBox}>
+            <span className={styles.movie__text}>Рейтинг: {movie.ratingKinopoisk || "-"}/10</span>
+            <Star/>
+          </div>
 
-          <Link to={dynamicLink.movieId(movie.kinopoiskId)}>
-            <Button variant={"primary"}>Подробнее</Button>
-          </Link>
+          <span className={styles.movie__text}>Год: {movie.year}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

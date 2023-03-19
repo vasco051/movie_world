@@ -1,5 +1,13 @@
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.awardsSection {
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  // TODO стили для ошибки
+  &__error {
+
+  }
 }

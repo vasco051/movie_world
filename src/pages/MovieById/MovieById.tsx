@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MovieService } from "../../API/rest/movieService";
-import Loader from "../../components/UI/Loader/Loader";
+import LoadingWrapper from "../../components/Wrappers/LoadingWrapper/LoadingWrapper";
 
 import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
 
@@ -43,30 +43,27 @@ const MovieById: FC = () => {
 
   return (
     <PageWrapper className={styles.movie}>
-      {isLoading
-        ? <Loader/>
-        :
-        <>
-          <MajorMovie movie={movie}/>
+      <LoadingWrapper isLoading={isLoading}>
 
-          <div className={styles.buttons}>
-            {selects.map(s =>
-              <button
-                key={s.id}
-                onClick={() => setSelectValue(s.id)}
-                className={clsx({
-                  [styles.buttons__button]: true,
-                  [styles.buttons__button_active]: selectValue === s.id
-                })}
-              >{s.id}</button>
-            )}
-          </div>
+        <MajorMovie movie={movie}/>
+        <section className={styles.buttons}>
+          {selects.map(s =>
+            <button
+              key={s.id}
+              onClick={() => setSelectValue(s.id)}
+              className={clsx({
+                [styles.buttons__button]: true,
+                [styles.buttons__button_active]: selectValue === s.id
+              })}
+            >{s.id}</button>
+          )}
+        </section>
 
-          {/*TODO погуглить про нормальный способ отрисовки раздела*/}
-          {selects.find(s => s.id === selectValue)!.element}
-        </>
-      }
-      {isError}
+        {/*TODO нормальный способ отрисовки раздела*/}
+        {selects.find(s => s.id === selectValue)!.element}
+      </LoadingWrapper>
+
+      <p>{isError}</p>
     </PageWrapper>
   );
 };

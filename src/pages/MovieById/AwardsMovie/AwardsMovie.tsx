@@ -4,7 +4,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import AwardItem from "../../../components/AwardItem/AwardItem";
 import List from "../../../components/List/List";
 import Pagination from "../../../components/Pagination/Pagination";
-import Loader from "../../../components/UI/Loader/Loader";
+import LoadingWrapper from "../../../components/Wrappers/LoadingWrapper/LoadingWrapper";
 import { Context } from "../../../index";
 
 import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
@@ -25,30 +25,26 @@ const AwardsMovie: FC<AwardsMovieProps> = observer(({ id }) => {
   }, []);
 
   return (
-    <section>
-      {/*Нет нормального ID в аргументах, поэтому шакалю так*/}
-      {awardsStore.isLoading
-        ? <Loader/>
-        :
-        <>
-          <List
-            items={getLimitedItems(awardsStore.list, page, limit)}
-            placeholder="Номинации отсутствуют"
-            className={styles.list}
-            renderItem={(award) =>
-              <AwardItem award={award} key={award.name + award.nominationName + award.year}/>
-            }
-          />
-          <Pagination
-            totalPages={getTotalPages(awardsStore.list.length, limit)}
-            page={page}
-            setPage={(page) => setPage(page)}
-            className={styles.commentsSection__pagination}
-          />
-        </>
-      }
+    <section className={styles.awardsSection}>
+      <LoadingWrapper isLoading={awardsStore.isLoading}>
+        {/*Нет нормального ID в аргументах, поэтому шакалю так*/}
+        <List
+          items={getLimitedItems(awardsStore.list, page, limit)}
+          placeholder="Номинации отсутствуют"
+          className={styles.awardsSection__list}
+          renderItem={(award) =>
+            <AwardItem award={award} key={award.name + award.nominationName + award.year}/>
+          }
+        />
+        <Pagination
+          totalPages={getTotalPages(awardsStore.list.length, limit)}
+          page={page}
+          setPage={(page) => setPage(page)}
+          className={styles.awardsSection__pagination}
+        />
+      </LoadingWrapper>
 
-      {awardsStore.isError && <h2>{awardsStore.isError}</h2>}
+      {awardsStore.isError && <h2 className={styles.awardsSection__error}>{awardsStore.isError}</h2>}
     </section>
   );
 });

@@ -2,7 +2,7 @@ import axios from "axios";
 import { makeAutoObservable } from "mobx";
 
 import { MovieService } from "../../API/rest/movieService";
-import { movOrders, Types } from "../../models/commonModels";
+import { movOrders, movTypes } from "../../models/commonModels";
 import { IMoviesStore } from "./IMoviesStore";
 
 
@@ -10,14 +10,14 @@ export class MoviesStore implements IMoviesStore {
   _loading: boolean;
   _error: string | null;
   _order: movOrders;
-  _type: Types;
+  _type: movTypes;
   _page: number;
 
   constructor() {
     this._loading = false;
     this._error = null;
     this._order = movOrders.numValue;
-    this._type = Types.tvSeries;
+    this._type = movTypes.film;
     this._page = 1;
     makeAutoObservable(this);
   }
@@ -56,7 +56,7 @@ export class MoviesStore implements IMoviesStore {
     this._order = order;
   }
 
-  setType(type: Types) {
+  setType(type: movTypes) {
     this._type = type;
   }
 

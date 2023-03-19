@@ -7,7 +7,7 @@ import { staticLinks } from "../../assets/exportData/links";
 import logo from "../../assets/images/login/logo.png";
 import Button from "../../components/UI/button/Button";
 import Input from "../../components/UI/input/Input";
-import Loader from "../../components/UI/Loader/Loader";
+import LoadingWrapper from "../../components/Wrappers/LoadingWrapper/LoadingWrapper";
 import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
 
 import { Context } from "../../index";
@@ -89,9 +89,7 @@ const Login: FC = observer(() => {
 
           </div>
 
-          {authStore.isLoading
-            ? <Loader/>
-            :
+          <LoadingWrapper isLoading={authStore.isLoading}>
             <Button
               type="submit"
               variant={"primary"}
@@ -99,7 +97,8 @@ const Login: FC = observer(() => {
             >
               Войти
             </Button>
-          }
+          </LoadingWrapper>
+
         </form>
       </div>
     </PageWrapper>

@@ -1,17 +1,40 @@
-import { movOrders, TSelectOption } from "../../models/commonModels";
+import { movOrders, movTypes, TSelectOption } from "../../models/commonModels";
 
 
-export const moviesOptions: TSelectOption<movOrders>[] = [
-  {
-    value: movOrders.rating,
-    label: "По рейтингу"
-  },
+export const moviesOrderOptions: TSelectOption<movOrders>[] = [
   {
     value: movOrders.numValue,
-    label: "По хз"
+    label: "Просмотрам"
+  },
+  {
+    value: movOrders.rating,
+    label: "Рейтингу"
   },
   {
     value: movOrders.year,
-    label: "По годам"
+    label: "Годам (выдает шлак)"
+  }
+];
+
+export const moviesTypeOptions: TSelectOption<movTypes>[] = [
+  {
+    value: movTypes.all,
+    label: "Все"
+  },
+  {
+    value: movTypes.film,
+    label: "Фильм"
+  },
+  {
+    value: movTypes.miniSeries,
+    label: "Мини-сериал"
+  },
+  {
+    value: movTypes.tvShow,
+    label: "Шоу"
+  },
+  {
+    value: movTypes.tvSeries,
+    label: "Сериал"
   }
 ];

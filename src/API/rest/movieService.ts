@@ -1,5 +1,5 @@
 import axios from "axios";
-import { movOrders, TItems, Types } from "../../models/commonModels";
+import { movOrders, movTypes, TItems } from "../../models/commonModels";
 import { IMovieFull, IMovieShort } from "../../models/movieModels";
 import { keyBD } from "../keyBD";
 
@@ -14,7 +14,7 @@ export const Axios = axios.create({
 
 
 export class MovieService {
-  static async allMovies(page: number, order: movOrders, type: Types) {
+  static async allMovies(page: number, order: movOrders, type: movTypes) {
     return await Axios.get<TItems<IMovieShort>>("films", {
       params: {
         page,
@@ -29,13 +29,12 @@ export class MovieService {
     return response.data;
   }
 
-  static async videosById(id: number | string) {
-    const response = await Axios.get("films/" + id + "/videos");
-    return response.data.items;
-  }
-
-  static async similarsById(id: number | string) {
-    const response = await Axios.get("films/" + id + "/similars");
-    return response.data.items;
-  }
+  // static async topMovies(page: number, type: topTypes) {
+  //   return await Axios.get("films/top", {
+  //     params: {
+  //       page,
+  //       type
+  //     }
+  //   });
+  // }
 }

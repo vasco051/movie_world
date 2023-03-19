@@ -8,8 +8,8 @@ export default function List<T>({
   placeholder
 }: ListProps<T>) {
   return (
-    <div className={className}>
+    <section className={className}>
       {items.length ? items.map(renderItem) : <h2>{placeholder || "Сейчас содержимое отсутствует!"}</h2>}
-    </div>
+    </section>
   );
 }

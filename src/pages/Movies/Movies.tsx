@@ -4,7 +4,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import List from "../../components/List/List";
 import MovieItem from "../../components/MovieItem/MovieItem";
 import Pagination from "../../components/Pagination/Pagination";
-import Loader from "../../components/UI/Loader/Loader";
+import LoadingWrapper from "../../components/Wrappers/LoadingWrapper/LoadingWrapper";
 import PageWrapper from "../../components/Wrappers/PageWrapper/PageWrapper";
 
 import { Context } from "../../index";
@@ -13,11 +13,13 @@ import { IMovieShort } from "../../models/movieModels";
 import { getTotalPages } from "../../utils/pagination";
 
 import styles from "./Movies.module.scss";
+import MoviesSelects from "./moviesSelects/moviesSelects";
 
 
 const Movies: FC = observer(() => {
   const { moviesStore } = useContext(Context);
 
+  // TODO я думаю, что нет смысла выносить это в стейт
   const [ movies, setMovies ] = useState<IMovieShort[]>([]);
   const [ totalItems, setTotalItems ] = useState<number>(0);
 
@@ -32,37 +34,31 @@ const Movies: FC = observer(() => {
 
   useEffect(() => {
     fetchMovies();
-  }, [ moviesStore.page, moviesStore.order ]);
+  }, [ moviesStore.page, moviesStore.order, moviesStore.type ]);
 
   return (
     <PageWrapper className={styles.movies}>
-      <h1 className={styles.movies__title}>
-        Лучшие новинки!
-      </h1>
 
-      {moviesStore.isLoading
-        ?
-        <Loader/>
-        :
-        <>
-          <List
-            items={movies}
-            className={styles.movies__list}
-            renderItem={(movie: IMovieShort) => (
-              <MovieItem movie={movie} key={movie.kinopoiskId}/>
-            )}
-          />
+      <MoviesSelects/>
 
-          <Pagination
-            totalPages={getTotalPages(totalItems, 20)}
-            page={moviesStore.page}
-            setPage={page => moviesStore.setPage(page)}
-            className={styles.movies__pagination}
-          />
-        </>
-      }
+      <LoadingWrapper isLoading={moviesStore.isLoading}>
+        <List
+          items={movies}
+          className={styles.movies__list}
+          renderItem={(movie: IMovieShort) => (
+            <MovieItem movie={movie} key={movie.kinopoiskId}/>
+          )}
+        />
 
-      <h2 className={styles.movies__error}>{moviesStore.isError}</h2>
+        <Pagination
+          totalPages={getTotalPages(totalItems, 20)}
+          page={moviesStore.page}
+          setPage={page => moviesStore.setPage(page)}
+          className={styles.movies__pagination}
+        />
+      </LoadingWrapper>
+
+      {moviesStore.isError && <h2 className={styles.movies__error}>{moviesStore.isError}</h2>}
     </PageWrapper>
   );
 });

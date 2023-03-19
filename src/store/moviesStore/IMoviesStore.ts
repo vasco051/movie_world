@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { movOrders, TItems, Types } from "../../models/commonModels";
+import { movOrders, movTypes, TItems } from "../../models/commonModels";
 import { IMovieShort } from "../../models/movieModels";
 
 
@@ -7,7 +7,7 @@ export interface IMoviesStore {
   _loading: boolean;
   _error: string | null;
   _order: movOrders;
-  _type: Types;
+  _type: movTypes;
   _page: number;
 
   // gets
@@ -17,7 +17,7 @@ export interface IMoviesStore {
 
   get order(): movOrders;
 
-  get type(): Types;
+  get type(): movTypes;
 
   get page(): number;
 
@@ -29,7 +29,7 @@ export interface IMoviesStore {
 
   setOrder(order: movOrders): void;
 
-  setType(type: Types): void;
+  setType(type: movTypes): void;
 
   setPage(page: number): void;
 

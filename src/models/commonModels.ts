@@ -3,9 +3,15 @@ export interface TItems<T> {
   total: number;
 }
 
+// export interface TFilms<T> {
+//   films: T[];
+//   pagesCount: number;
+// }
+
+
 export interface TSelectOption<T> {
-  value: T;
   label: string;
+  value: T;
 }
 
 export enum movOrders {
@@ -14,7 +20,7 @@ export enum movOrders {
   "year" = "YEAR"
 }
 
-export enum Types {
+export enum movTypes {
   "film" = "FILM",
   "tvShow" = "TV_SHOW",
   "tvSeries" = "TV_SERIES",
@@ -29,4 +35,10 @@ export enum comOrders {
   "userPositiveRatingDesc" = "USER_POSITIVE_RATING_DESC",
   "userNegativeRatingAsc" = "USER_NEGATIVE_RATING_ASC",
   "userNegativeRatingDesc" = "USER_NEGATIVE_RATING_DESC",
+}
+
+export enum topTypes {
+  "top250Best" = "",
+  "top100Popular" = "",
+  "topAwait" = "",
 }
