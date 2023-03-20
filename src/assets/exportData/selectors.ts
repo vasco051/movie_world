@@ -1,4 +1,4 @@
-import { movOrders, movTypes, TSelectOption } from "../../models/commonModels";
+import { comOrders, movOrders, movTypes, TSelectOption } from "../../models/commonModels";
 
 
 export const moviesOrderOptions: TSelectOption<movOrders>[] = [
@@ -36,5 +36,24 @@ export const moviesTypeOptions: TSelectOption<movTypes>[] = [
   {
     value: movTypes.tvSeries,
     label: "Сериал"
+  }
+];
+
+export const commentsOrderOptions: TSelectOption<comOrders>[] = [
+  {
+    value: comOrders.userPositiveRatingDesc,
+    label: "Больше всего лайков"
+  },
+  {
+    value: comOrders.userNegativeRatingDesc,
+    label: "Больше всего дизлайков"
+  },
+  {
+    value: comOrders.dateDesc,
+    label: "Новые"
+  },
+  {
+    value: comOrders.dataASC,
+    label: "Старые"
   }
 ];

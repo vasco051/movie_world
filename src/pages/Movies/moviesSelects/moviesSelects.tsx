@@ -5,7 +5,8 @@ import Select from "react-select";
 import { moviesOrderOptions, moviesTypeOptions } from "../../../assets/exportData/selectors";
 import { Context } from "../../../index";
 
-import "./moviesSelects.scss";
+import "./moviesSelects.module.scss";
+import styles from "./moviesSelects.module.scss";
 
 
 const MoviesSelects: FC = observer(() => {
@@ -14,10 +15,10 @@ const MoviesSelects: FC = observer(() => {
   // TODO onChange and Value были функциями тут, но я их перенес в сам Select
 
   return (
-    <section className="moviesSelects">
+    <section className={styles.moviesSelects}>
 
-      <div className="moviesSelects__item">
-        <p className="moviesSelects__title">Жанр</p>
+      <div className={styles.moviesSelects__item}>
+        <p className={styles.moviesSelects__title}>Жанр</p>
         <Select
           options={moviesTypeOptions}
           onChange={(newValue) => {
@@ -25,12 +26,12 @@ const MoviesSelects: FC = observer(() => {
             newValue && moviesStore.setType(newValue.value);
           }}
           defaultValue={moviesTypeOptions.find(order => order.value === moviesStore.type)}
-          classNamePrefix="moviesSelects"
+          classNamePrefix="ReactSelect"
         />
       </div>
 
-      <div className="moviesSelects__item">
-        <p className="moviesSelects__title">Сортировка по</p>
+      <div className={styles.moviesSelects__item}>
+        <p className={styles.moviesSelects__title}>Сортировка по</p>
         <Select
           options={moviesOrderOptions}
           onChange={(newValue) => {
@@ -38,7 +39,7 @@ const MoviesSelects: FC = observer(() => {
             newValue && moviesStore.setOrder(newValue.value);
           }}
           defaultValue={moviesOrderOptions.find(order => order.value === moviesStore.order)}
-          classNamePrefix="moviesSelects"
+          classNamePrefix="ReactSelect"
         />
       </div>
 

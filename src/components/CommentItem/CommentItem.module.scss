@@ -22,6 +22,60 @@
   &__description {
     line-height: 20px;
     font-size: 18px;
-
+    margin-bottom: 10px;
   }
+
+  &__ratingBox {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__ratingItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    span {
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
+
+  &__positive {
+    fill: white;
+    cursor: pointer;
+  }
+
+  &__negative {
+    fill: white;
+    cursor: pointer;
+  }
+
+  &__openButton {
+    margin-top: 5px;
+
+    display: block;
+    background: inherit;
+    color: grey;
+    font-size: 15px;
+
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      width: 0;
+      height: 1px;
+      display: block;
+      background: grey;
+      transition: 150ms;
+    }
+
+    &:hover {
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+
 }

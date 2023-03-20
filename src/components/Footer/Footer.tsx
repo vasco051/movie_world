@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -12,7 +13,7 @@ import styles from "./Footer.module.scss";
 import { IFooter } from "./IFooter";
 
 
-const Footer: FC = () => {
+const Footer: FC = observer(() => {
   const { authStore } = useContext(Context);
 
   const location = useLocation();
@@ -47,10 +48,6 @@ const Footer: FC = () => {
     return null;
   }
 
-  // if (pagesIgnoreFooter.includes(location.pathname)) {
-  //   return null;
-  // }
-
   return (
     <footer className={styles.footer}>
       <div className={clsx(styles.footer__wrapper, "container")}>
@@ -80,6 +77,6 @@ const Footer: FC = () => {
       </div>
     </footer>
   );
-};
+});
 
 export default Footer;

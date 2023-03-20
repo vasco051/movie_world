@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { FC, useContext, useEffect, useState } from "react";
+import "../../../assets/styles/ReactSelect.scss";
 import CommentItem from "../../../components/CommentItem/CommentItem";
 
 import List from "../../../components/List/List";
@@ -12,6 +13,7 @@ import { getLimitedItems, getTotalPages } from "../../../utils/pagination";
 import styles from "./CommentsSection.module.scss";
 
 import { CommentsSectionProps } from "./CommentsSectionProps";
+import CommentsSelects from "./CommentsSelects/CommentsSelects";
 
 
 const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
@@ -22,10 +24,12 @@ const CommentsSection: FC<CommentsSectionProps> = observer(({ id }) => {
 
   useEffect(() => {
     commentsStore.fetchComments(id!);
-  }, []);
+  }, [ commentsStore.order ]);
 
   return (
     <section className={styles.commentsSection}>
+      <CommentsSelects setPage={setPage}/>
+
       <LoadingWrapper isLoading={commentsStore.isLoading}>
         <List
           items={getLimitedItems(commentsStore.list, page, limit)}

@@ -17,7 +17,7 @@ export default class CommentsStore implements ICommentsStore {
     this._comments = observable.map<number, IComment>();
     this._isLoading = false;
     this._isError = null;
-    this._order = comOrders.dateDesc;
+    this._order = comOrders.userPositiveRatingDesc;
     makeAutoObservable(this);
   }
 
